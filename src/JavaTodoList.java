@@ -1,10 +1,12 @@
+import java.util.Scanner;
+
 public class JavaTodoList {
 
     public static String[] model = new String[10];
+    public static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     public static void main(String[] args) {
-//        testShowTodoList();
-        testAddTodoList();
+        testRemoveTodoList();
     }
 
     /**
@@ -56,7 +58,7 @@ public class JavaTodoList {
     }
 
     public static void testAddTodoList(){
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 10; i++) {
             addTodoList("Contoh Todo ke-" + i);
         }
         showTodoList();
@@ -65,7 +67,34 @@ public class JavaTodoList {
     /**
      * menghapus TodoList
      */
-    public static void removeTodoList(){
+    public static boolean removeTodoList(Integer number){
+        if (model[number-1] == null){
+            return false;
+        }else if ((number) > model.length) {
+            return false;
+        }else {
+//            var data = model[number];
+            return true;
+        }
+    }
 
+    public static void testRemoveTodoList(){
+        testAddTodoList();
+        while (true){
+            System.out.print("Masukkan Nomor yang akan dihapus: ");
+            var input = input();
+            if (removeTodoList(Integer.valueOf(input))){
+                System.out.println("DATA " + input + " BERHASIL DIHAPUS");
+            }else {
+                System.out.println("DATA " + input + " GAGAL DIHAPUS");
+            }
+            showTodoList();
+        }
+
+    }
+
+    public static String input() {
+        var data = scanner.nextLine();
+        return data;
     }
 }
