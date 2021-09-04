@@ -59,7 +59,7 @@ public class JavaTodoList {
 
     public static void testAddTodoList(){
         for (int i = 0; i < 10; i++) {
-            addTodoList("Contoh Todo ke-" + i);
+            addTodoList("Contoh Todo ke-" + (i+1));
         }
         showTodoList();
     }
@@ -68,12 +68,20 @@ public class JavaTodoList {
      * menghapus TodoList
      */
     public static boolean removeTodoList(Integer number){
-        if (model[number-1] == null){
+        if (number > model.length){
             return false;
-        }else if ((number) > model.length) {
+        }else if(number < 1){
+            return false;
+        }else if (model[number-1] == null) {
             return false;
         }else {
-//            var data = model[number];
+            for (int i = (number-1); i < model.length; i++) {
+                if (i != (model.length - 1)) {
+                    model[i] = model[i+1];
+                }else {
+                    model[i] = null;
+                }
+            }
             return true;
         }
     }
